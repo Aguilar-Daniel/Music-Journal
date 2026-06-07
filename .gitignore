@@ -216,6 +216,8 @@ __marimo__/
 
 # Private
 config.json
+Songs.json
+Notes_and_Ratings.json
 
 # IDE files
 .idea/
