@@ -217,5 +217,13 @@ __marimo__/
 # Private
 config.json
 
+# IDE files
+.idea/
+*.iml
+
+# Python noise
+__pycache__/
+*.pyc
+
 # Streamlit
 .streamlit/secrets.toml
