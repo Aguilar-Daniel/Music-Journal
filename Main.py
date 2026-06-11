@@ -12,9 +12,11 @@ i = 1
 
 
 
-with open("Notes_and_Ratings.json", "r") as f:
-    journal = json.load(f)
-
+try:
+    with open("Notes_and_Ratings.json", "r") as f:
+        journal = json.load(f)
+except FileNotFoundError:
+    journal = {}
 
 
 username = input("Please enter your username: ")
