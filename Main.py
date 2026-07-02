@@ -2,6 +2,7 @@ import requests
 import json
 from tkinter import *
 from tkmacosx import Button
+from tkinter import messagebox
 
 with open("config.json", "r") as a:
     key = json.load(a)
@@ -87,10 +88,18 @@ def save_note(song):
 
 
 def save_rating(song):
-    journal[song]["Rating"] = rating.get()
-    save_journal(journal_data=journal)
-    rate_frame.pack_forget()
-    main_menu(song)
+    try:
+        value = float(rating.get())
+        if value < 1 or value > 10:
+            messagebox.showerror(title="Rating Error", message="Rating must be 1-10!")
+
+        else:
+            journal[song]["Rating"] = rating.get()
+            save_journal(journal_data=journal)
+            rate_frame.pack_forget()
+            main_menu(song)
+    except ValueError:
+        messagebox.showerror(title="Rating Error", message="Please enter a number")
 
 def edit_note(song):
     global notes, note_frame
@@ -111,7 +120,7 @@ def edit_note(song):
     note_frame.pack()
 
 def rate_song(song):
-    global rating, rate_frame
+    global rating, rate_frame, rating
     menu.pack_forget()
     rate_frame = Frame(main_window, bg="#1e1e1e")
     rating_label = Label(rate_frame, text="Current Rating: " + str(journal[song]["Rating"]))
