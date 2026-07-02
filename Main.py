@@ -36,6 +36,7 @@ def submit():
 
     try:
         tracks = data["recenttracks"]["track"]
+
     except KeyError:
         messagebox.showerror(title="Error", message="Username not found")
         return
