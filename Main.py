@@ -34,7 +34,11 @@ def submit():
     values = requests.get(BASE_URL, params=params)
     data = values.json()
 
-    tracks = data["recenttracks"]["track"]
+    try:
+        tracks = data["recenttracks"]["track"]
+    except KeyError:
+        messagebox.showerror(title="Error", message="Username not found")
+        return
 
     old_journal = journal
     journal = {}
